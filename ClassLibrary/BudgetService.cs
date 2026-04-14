@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartBudget
+namespace SmartBudget.ClassLibrary
 {
-    internal class ObjectOfAnalysis
+    internal class BudgetService
     {
     }
 }
