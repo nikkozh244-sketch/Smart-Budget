@@ -86,6 +86,7 @@ namespace SmartBudget.ClassLibrary
             throw new NotImplementedException();
         }
 
+        //Использование интерфейса IFormattable
         public string ToString(string? format, IFormatProvider? formatProvider)
         {
             throw new NotImplementedException();
