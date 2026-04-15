@@ -8,13 +8,15 @@ namespace SmartBudget.ClassLibrary
 {
     internal class Currency
     {
-        public float _amount;
+        public float _amount; //Определяет размер операции - float, так как сумма не обязана быть целочисленной
 
+        //Свойство класса
         public float Amount
         { 
             get { return _amount; } 
             set 
             {
+                //Проверка того, что после запятой не более двух знаков
                 string tempAmount = _amount.ToString();
                 int indexOfComa = tempAmount.IndexOf(",");
                 int amountLength = tempAmount.Length;
@@ -25,6 +27,7 @@ namespace SmartBudget.ClassLibrary
             } 
         }
 
+        //Метод для ввода размера операции
         public void Init()
         {
             if (float.TryParse(Console.ReadLine(), out float tempAmount))
@@ -33,16 +36,19 @@ namespace SmartBudget.ClassLibrary
                 throw new Exception("Ошибка! Значение введено некорректно");
         }
 
+        //Конструктор без параметров
         public Currency()
         {
             Amount = 0;
         }
 
+        //Конструктор с параметром
         public Currency(float amount)
         {
             Amount = amount;
         }
 
+        //Перегрузка метода ToString
         public virtual string ToString()
         {
             return $"{_amount}";

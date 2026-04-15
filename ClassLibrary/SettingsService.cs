@@ -8,12 +8,13 @@ namespace SmartBudget.ClassLibrary
 {
     internal class SettingsService
     {
-        public string _language;
-        public bool _isDark;
-        public bool _isLeftHanded;
-        public bool _isDogTheme;
+        public string _language; //Определяет язык приложения
+        public bool _isDark; //Определяет, включена ли темная тема приложения
+        public bool _isLeftHanded; //Определяет, включен ли "Режим левши"
+        public bool _isDogTheme; //Определяет, включен ли "Режим собачника"
         // РЕШИТЬ С ВАЛЮТОЙ
 
+        // Свойства класса
         public string Language
         {
             get { return _language; }
@@ -49,6 +50,7 @@ namespace SmartBudget.ClassLibrary
             }
         }
 
+        //Конструктор с параметрами
         public SettingsService(string language, bool isDark, bool isLeftHanded, bool isDogTheme)
         {
             Language = language;
@@ -57,6 +59,7 @@ namespace SmartBudget.ClassLibrary
             IsDogTheme = isDogTheme;            
         }
 
+        //Конструктор без параметров - при первом запуске создается объект с именно такими свойствами
         public SettingsService()
         {
             Language = "Русский";
@@ -65,16 +68,20 @@ namespace SmartBudget.ClassLibrary
             IsDogTheme = false;
         }
 
+        //Здесь необходимо реализовать метод, загружающий из файла объект с сохраненными свойствами
+        //Это делается для того, чтобы пользователь мог не менять настройки под себя каждый раз, когда выходит из приложения и заходит обратно
         public SettingsService LoadSettings()
         {
             throw new NotImplementedException();
         }
 
+        //Здесь необходимо реализовать метод, сохраняющий на устройство файл с объектом со свойствами, которые задал пользователь
         public void SaveSettings()
         {
             throw new NotImplementedException();
         }
 
+        //Здесь необходимо реализовать метод, позволяющий сбрасывать настройки до начальных
         public SettingsService ResetSettigs()
         {
             throw new NotImplementedException();
