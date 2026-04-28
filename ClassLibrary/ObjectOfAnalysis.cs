@@ -76,9 +76,23 @@ namespace SmartBudget.ClassLibrary
             throw new NotImplementedException();
         }
 
-        public void ChangeObject()
+        /// <summary>
+        ///Изменяет свойства анализируемого объекта 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void ChangeObject(ObjectOfAnalysis other)
         {
-            throw new NotImplementedException();
+            if (other.TypeOfOperation != null || other.Category != null || other.Comment != null)
+            {
+                this.Sum = other.Sum;
+                this.TypeOfOperation = other.TypeOfOperation;
+                this.Category = other.Category;
+                this.Date = other.Date;
+                this.Comment = other.Comment;
+            }
+            else
+                throw new Exception("Ошибка! Не забудьте ввести все параметры");
         }
 
         public string ToString()
@@ -92,7 +106,7 @@ namespace SmartBudget.ClassLibrary
             throw new NotImplementedException();
         }
 
-        public virtual void Show()
+        public virtual string Show()
         {
             throw new NotImplementedException();
         }

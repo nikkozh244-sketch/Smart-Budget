@@ -8,11 +8,12 @@ namespace SmartBudget.ClassLibrary
 {
     internal class SettingsService
     {
-        public string _language; //Определяет язык приложения
-        public bool _isDark; //Определяет, включена ли темная тема приложения
-        public bool _isLeftHanded; //Определяет, включен ли "Режим левши"
-        public bool _isDogTheme; //Определяет, включен ли "Режим собачника"
-        // РЕШИТЬ С ВАЛЮТОЙ
+        // Поля класса
+        protected string _language; //Определяет язык приложения
+        protected bool _isDark; //Определяет, включена ли темная тема приложения
+        protected bool _isLeftHanded; //Определяет, включен ли "Режим левши"
+        protected bool _isDogTheme; //Определяет, включен ли "Режим собачника"
+        protected int _dollarValue; //Определяет курс доллара
 
         // Свойства класса
         public string Language
@@ -41,6 +42,7 @@ namespace SmartBudget.ClassLibrary
                 _isLeftHanded = value;
             }
         }
+
         public bool IsDogTheme
         {
             get { return _isDogTheme; }
@@ -50,13 +52,19 @@ namespace SmartBudget.ClassLibrary
             }
         }
 
-        //Конструктор с параметрами
-        public SettingsService(string language, bool isDark, bool isLeftHanded, bool isDogTheme)
+        public int DollarValue
         {
-            Language = language;
-            IsDark = isDark;
-            IsLeftHanded = isLeftHanded;
-            IsDogTheme = isDogTheme;            
+            get { return _dollarValue; }
+            set
+            {
+                if (value < 0)
+                    throw new Exception("Ошибка! Курс доллара не может быть отрицательным");
+                if (value == 0)
+                    throw new Exception("Ошибка! Курс доллара не может равняться нулю");
+                if (value > 121) //Исторический максимум - обговорить с бригадой, а надо ли это чудо вообще
+                    throw new Exception("Ошибка! Курс доллара превышает исторический максимум! Неужто новая острая ситуация в мире?");
+                _dollarValue = value;
+            }
         }
 
         //Конструктор без параметров - при первом запуске создается объект с именно такими свойствами
@@ -66,6 +74,17 @@ namespace SmartBudget.ClassLibrary
             IsDark = false;
             IsLeftHanded = false;
             IsDogTheme = false;
+            DollarValue = 1;
+        }
+
+        //Конструктор с параметрами
+        public SettingsService(string language, bool isDark, bool isLeftHanded, bool isDogTheme, int dollarValue)
+        {
+            Language = language;
+            IsDark = isDark;
+            IsLeftHanded = isLeftHanded;
+            IsDogTheme = isDogTheme;
+            DollarValue = dollarValue;
         }
 
         //Здесь необходимо реализовать метод, загружающий из файла объект с сохраненными свойствами
@@ -81,11 +100,16 @@ namespace SmartBudget.ClassLibrary
             throw new NotImplementedException();
         }
 
-        //Здесь необходимо реализовать метод, позволяющий сбрасывать настройки до начальных
-        public SettingsService ResetSettigs()
+        /// <summary>
+        ///Метод, позволяющий сбросить настройки до тех, что стоят по умолчанию 
+        /// </summary>
+        public void ResetSettings()
         {
-            throw new NotImplementedException();
+            this.Language = "Русский";
+            this.IsDark = false;
+            this.IsLeftHanded = false;
+            this.IsDogTheme = false;
+            this.DollarValue = 1;
         }
-               
     }
 }
