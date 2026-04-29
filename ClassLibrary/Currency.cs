@@ -42,10 +42,16 @@ namespace SmartBudget.ClassLibrary
             Amount = 0;
         }
 
-        //Конструктор с параметром
+        //Конструктор с параметром для рублей
         public Currency(float amount)
         {
             Amount = amount;
+        }
+
+        //Конструктор с параметром для долларов
+        public Currency(float amount, SettingsService settings)
+        {
+            Amount = amount * settings.DollarValue;
         }
 
         //Перегрузка метода ToString
