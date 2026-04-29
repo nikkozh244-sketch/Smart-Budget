@@ -8,13 +8,20 @@ namespace SmartBudget.ClassLibrary
 {
     internal class ProjectService
     {
-        //Метод для открытия имеющегося на компьютере проекта
+        /// <summary>
+        /// Метод для открытия имеющегося на компьютере проекта
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public BudgetService OpenProjectFile()
         {
             throw new NotImplementedException();
         }
 
-        //Метод для сохранения на компьютере проекта
+        /// <summary>
+        /// Метод для сохранения на компьютере проекта
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         public void SaveCurrentProject()
         {
             throw new NotImplementedException();

@@ -8,5 +8,6 @@ namespace SmartBudget.ClassLibrary
 {
     internal class BudgetService
     {
+        //Уточнить выбор коллекции
     }
 }
