@@ -18,7 +18,7 @@ namespace SmartBudget.ClassLibrary
             {
                 //Проверка того, что после запятой не более двух знаков
                 string tempAmount = _amount.ToString();
-                int indexOfComa = tempAmount.IndexOf(",");
+                int indexOfComa = tempAmount.IndexOf(',');
                 int amountLength = tempAmount.Length;
 
                 if (amountLength - indexOfComa > 2)

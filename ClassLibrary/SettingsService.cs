@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SmartBudget.ClassLibrary
@@ -87,17 +89,28 @@ namespace SmartBudget.ClassLibrary
             DollarValue = dollarValue;
         }
 
-        //Здесь необходимо реализовать метод, загружающий из файла объект с сохраненными свойствами
-        //Это делается для того, чтобы пользователь мог не менять настройки под себя каждый раз, когда выходит из приложения и заходит обратно
-        public SettingsService LoadSettings()
+        /// <summary>
+        ///Метод для выгрузки настроек из файла (требует дополнений точно) 
+        /// </summary>
+        /// <returns></returns>
+        static public SettingsService LoadSettings()
         {
-            throw new NotImplementedException();
+            string serilizedSettings = File.ReadAllText(null);
+
+            SettingsService settings = JsonConvert.DeserializeObject<SettingsService>(serilizedSettings);
+
+            return settings;
         }
 
-        //Здесь необходимо реализовать метод, сохраняющий на устройство файл с объектом со свойствами, которые задал пользователь
-        public void SaveSettings()
+        /// <summary>
+        ///Метод по сохранению настроек в текстовый файл (тоже требует дополнений, когда разберемся с экзешником)
+        /// </summary>
+        /// <param name="settings">Настройки</param>
+        static public void SaveSettings(SettingsService settings)
         {
-            throw new NotImplementedException();
+            string serializedSettings = JsonConvert.SerializeObject(settings);
+
+            File.WriteAllText(null, serializedSettings);
         }
 
         /// <summary>
